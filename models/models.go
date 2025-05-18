@@ -6,6 +6,11 @@ type NewsResponse struct {
 	Articles     []Article `json:"articles"`
 }
 
+type SourceResponse struct {
+	Status  string   `json:"status"`
+	Sources []Source `json:"sources"`
+}
+
 type Article struct {
 	Source      Source `json:"source"`
 	Author      string `json:"author"`
@@ -17,6 +22,10 @@ type Article struct {
 }
 
 type Source struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
+	ID       string `json:"id"`
+	Name     string `json:"name"`
+	Status   string `json:"status"`
+	URL      string `json:"url"`
+	Category string `json:"category"`
+	Country  string `json:"country"`
 }

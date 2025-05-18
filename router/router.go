@@ -9,5 +9,6 @@ func SetupRouter() *mux.Router {
 	request := mux.NewRouter()
 	request.HandleFunc("/news", handlers.GetNews).Methods("GET")
 	request.HandleFunc("/news/category", handlers.GetNewsCategory).Methods("GET")
+	request.HandleFunc("news/sources", handlers.GetSource).Methods("GET")
 	return request
 }
