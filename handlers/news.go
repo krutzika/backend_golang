@@ -8,12 +8,8 @@ import (
 )
 
 func GetNews(w http.ResponseWriter, r *http.Request) {
-	category := r.URL.Query().Get("category")
-	if category == "" {
-		http.Error(w, "missing category", http.StatusBadRequest)
-		return
-	}
-	articles, err := services.FetchTopLines(category)
+	country := "us"
+	articles, err := services.FetchTopLines(country)
 	if err != nil {
 		http.Error(w, "Error fetching top lines", http.StatusInternalServerError)
 		return
@@ -21,4 +17,15 @@ func GetNews(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json")
 	json.NewEncoder(w).Encode(articles)
 
+}
+
+func GetNewsCategory(w http.ResponseWriter, r *http.Request) {
+	category := "technology"
+	category_articles, err := services.FetchCategoryArticles(category)
+	if err != nil {
+		http.Error(w, "Error fetching top lines", http.StatusInternalServerError)
+		return
+	}
+	w.Header().Set("Content-type", "application/json")
+	json.NewEncoder(w).Encode(category_articles)
 }
